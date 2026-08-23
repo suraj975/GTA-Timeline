@@ -1,20 +1,21 @@
-# From Above to Leonida
+# Grand Theft History
 
-An independent interactive-history prototype exploring how the visual language of open-world crime games evolved from top-down maps to cinematic 3D cities.
+**From Above to Leonida** is an independent interactive timeline following 18 Grand Theft Auto releases across four visual eras—from the overhead streets of 1997 to Leonida in 2026.
 
-The first vertical slice includes:
+## The experience
 
-- a scroll-controlled 2D road and vehicle;
-- an adaptive era navigation rail;
-- a procedural 2D-to-3D WebGL camera transformation;
-- Liberty City and Vice-inspired original visual-language studies;
-- reduced-motion, semantic HTML, responsive fallbacks, and a source-ready asset manifest.
+- A cinematic original panorama introduces the full 1997—2026 journey.
+- Every main game, expansion, portable story, GTA Online, and the Definitive Trilogy has a timeline entry.
+- Each era has its own art direction: pixel-map 2D, neon/cinematic 3D, editorial HD, and tropical Leonida.
+- A scroll-driven Three.js sequence transforms the camera from overhead to street level.
+- The responsive layout includes reduced-motion behavior and semantic HTML content outside the canvas.
 
-No copyrighted game assets or music are included.
+No copied game art, music, trailers, or game assets are included. The site is an independent historical commentary project and is not affiliated with Rockstar Games or Take-Two Interactive.
 
 ## Development
 
 ```bash
+pnpm install
 pnpm dev
 ```
 
@@ -28,3 +29,7 @@ pnpm typecheck
 pnpm lint
 pnpm build
 ```
+
+## Deploy
+
+Import the GitHub repository into Vercel. The framework and build settings are detected automatically; no environment variables are required.

@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "From Above to Leonida — Grand Theft History",
   description:
-    "An original interactive prototype tracing the evolution of open-world crime games from top-down streets to cinematic cities.",
+    "An interactive timeline covering 18 Grand Theft Auto releases—from the top-down streets of 1997 to Leonida in 2026.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

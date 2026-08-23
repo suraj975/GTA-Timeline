@@ -1,14 +1,14 @@
 import type { CSSProperties } from "react";
-import type { GameChapter } from "@/content/games";
+import type { EraChapter } from "@/content/games";
 
 type EraRailProps = {
-  chapters: GameChapter[];
+  chapters: EraChapter[];
   activeId: string;
 };
 
 export function EraRail({ chapters, activeId }: EraRailProps) {
   return (
-    <nav className="era-rail" aria-label="Prototype chapters">
+    <nav className="era-rail" aria-label="Timeline eras">
       {chapters.map((chapter) => (
         <a
           className="era-link"
@@ -18,8 +18,8 @@ export function EraRail({ chapters, activeId }: EraRailProps) {
           style={{ "--era-accent": chapter.accent } as CSSProperties}
           aria-current={activeId === chapter.id ? "location" : undefined}
         >
-          <span>{chapter.year}</span>
-          {chapter.navLabel}
+          <span className="era-year">{chapter.year}</span>
+          <span className="era-name">{chapter.navLabel}</span>
         </a>
       ))}
     </nav>

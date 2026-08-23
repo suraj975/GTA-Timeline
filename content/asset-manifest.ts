@@ -7,6 +7,13 @@ export type AssetRecord = {
   loading: "critical" | "nearby" | "deferred";
 };
 
-// Production media will be registered here after source and usage review.
-// The vertical slice intentionally uses original CSS and procedural geometry.
-export const assets: AssetRecord[] = [];
+export const assets: AssetRecord[] = [
+  {
+    id: "timeline-panorama",
+    chapter: "global",
+    type: "image",
+    source: "Original AI-assisted artwork generated for this project",
+    owner: "Project artwork",
+    loading: "critical",
+  },
+];

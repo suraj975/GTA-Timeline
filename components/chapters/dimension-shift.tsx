@@ -29,12 +29,12 @@ export function DimensionShift() {
   }, [reducedMotion]);
 
   return (
-    <section className="chapter transform-chapter" id="evolution" data-era="evolution" ref={section}>
+    <section className="chapter transform-chapter" id="dimension-shift" ref={section}>
       <div className="sticky-stage webgl-stage">
         <EvolutionScene progress={progress} />
         <div className="transition-copy">
-          <div className="transition-kicker">2001 · {progressLabel(progress)}</div>
-          <h2 className="transition-title">A city gains <span>depth</span></h2>
+          <div className="transition-kicker">THE DEFINING JUMP · 2001 · {progressLabel(progress)}</div>
+          <h2 className="transition-title">Above becomes <span>behind</span></h2>
           <div className="transition-meter" style={{ "--transition-progress": progress } as CSSProperties} aria-hidden="true">
             <span />
           </div>

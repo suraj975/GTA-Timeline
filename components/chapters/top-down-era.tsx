@@ -3,7 +3,11 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gamesByEra } from "@/content/games";
+import { GameCard } from "@/components/chapters/game-card";
 import { useReducedMotion } from "@/lib/capability/use-reduced-motion";
+
+const games = gamesByEra("2d");
 
 export function TopDownEra() {
   const section = useRef<HTMLElement>(null);
@@ -14,37 +18,24 @@ export function TopDownEra() {
     if (reducedMotion || !section.current || !car.current) return;
     gsap.registerPlugin(ScrollTrigger);
     const context = gsap.context(() => {
-      gsap.to(car.current, {
-        top: "82%",
-        rotation: 180,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.35,
-        },
+      gsap.fromTo(car.current, { top: "7%" }, {
+        top: "89%", rotation: 180, ease: "none",
+        scrollTrigger: { trigger: section.current, start: "top 70%", end: "bottom 75%", scrub: 0.4 },
       });
     }, section);
     return () => context.revert();
   }, [reducedMotion]);
 
   return (
-    <section className="chapter topdown-chapter" id="gta-1997" data-era="gta-1997" ref={section}>
-      <div className="sticky-stage map-stage">
-        <div className="map-building building-one" data-label="Grand Theft Auto · 1997" />
-        <div className="map-building building-two" data-label="Liberty City" />
-        <div className="map-building building-three" data-label="London · 1969" />
-        <div className="map-building building-four" data-label="Anywhere City · 1999" />
-        <div className="road-car" ref={car} aria-hidden="true" />
-        <div className="map-hud">
-          <div className="map-year">MISSION 01 · THE 2D WORLD</div>
-          <h2>Crime from above</h2>
-          <p>
-            Scroll drives the prototype vehicle through a compressed map of the first generation.
-            Streets, buildings and signs carry the history instead of conventional cards.
-          </p>
-        </div>
+    <section className="era-section two-d-era" id="2d" data-era="2d" ref={section}>
+      <div className="map-grid" aria-hidden="true"><span className="map-route" /><div className="road-car" ref={car} /></div>
+      <header className="era-heading">
+        <div><span className="era-count">ERA 01 / 04</span><p className="eyebrow">Pixels · payphones · overhead chaos</p></div>
+        <h2>The<br /><em>2D</em> world</h2>
+        <p>Before the cinematic camera, the city was a moving map. Four releases established the freedom, satire and geography that everything else would build on.</p>
+      </header>
+      <div className="game-grid game-grid--2d">
+        {games.map((game) => <GameCard game={game} key={game.id} />)}
       </div>
     </section>
   );
