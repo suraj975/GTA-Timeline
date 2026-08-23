@@ -24,7 +24,8 @@ export function HistoryExperience() {
         onEnterBack: () => setActiveEra(element.dataset.era ?? "intro"),
       }),
     );
-    const reveals = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reveals = reducedMotion
       ? []
       : gsap.utils.toArray<HTMLElement>("[data-reveal]").map((element) =>
           gsap.from(element, {
@@ -36,6 +37,19 @@ export function HistoryExperience() {
             scrollTrigger: { trigger: element, start: "top 88%", once: true },
           }),
         );
+    const storyAnimations = reducedMotion
+      ? []
+      : gsap.utils.toArray<HTMLElement>("[data-story]").map((story) => {
+          const world = story.querySelector<HTMLElement>(".story-world");
+          const copy = story.querySelector<HTMLElement>(".story-copy");
+          const car = story.querySelector<HTMLElement>(".story-car");
+          return gsap.timeline({
+            scrollTrigger: { trigger: story, start: "top bottom", end: "bottom top", scrub: .8 },
+          })
+            .fromTo(world, { scale: 1.14, yPercent: -3 }, { scale: 1.02, yPercent: 3, ease: "none" }, 0)
+            .fromTo(copy, { y: 100 }, { y: -45, ease: "none" }, 0)
+            .fromTo(car, { y: 130 }, { y: -85, ease: "none" }, 0);
+        });
     const progress = ScrollTrigger.create({
       start: 0,
       end: () => ScrollTrigger.maxScroll(window),
@@ -44,6 +58,7 @@ export function HistoryExperience() {
     return () => {
       triggers.forEach((trigger) => trigger.kill());
       reveals.forEach((animation) => animation.kill());
+      storyAnimations.forEach((animation) => animation.kill());
       progress.kill();
     };
   }, []);

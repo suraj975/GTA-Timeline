@@ -4,11 +4,14 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gamesByEra } from "@/content/games";
-import { GameCard } from "@/components/chapters/game-card";
+import { GameStory, SideMissions } from "@/components/chapters/game-story";
 import { MemoryDisplay } from "@/components/chapters/memory-display";
 import { useReducedMotion } from "@/lib/capability/use-reduced-motion";
 
 const games = gamesByEra("2d");
+const firstGame = games.find((game) => game.id === "grand-theft-auto")!;
+const gtaTwo = games.find((game) => game.id === "gta-2")!;
+const londonGames = games.filter((game) => game.id.startsWith("gta-london"));
 
 export function TopDownEra() {
   const section = useRef<HTMLElement>(null);
@@ -36,8 +39,10 @@ export function TopDownEra() {
         <p>Before the cinematic camera, the city was a moving map. Four releases established the freedom, satire and geography that everything else would build on.</p>
       </header>
       <MemoryDisplay era="2d" />
-      <div className="game-grid game-grid--2d">
-        {games.map((game) => <GameCard game={game} key={game.id} />)}
+      <div className="story-route">
+        <GameStory game={firstGame} />
+        <SideMissions games={londonGames} label="London calling" />
+        <GameStory game={gtaTwo} />
       </div>
     </section>
   );

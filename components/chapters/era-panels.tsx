@@ -1,4 +1,4 @@
-import { GameCard } from "@/components/chapters/game-card";
+import { GameStory, SideMissions } from "@/components/chapters/game-story";
 import { MemoryDisplay } from "@/components/chapters/memory-display";
 import { TrailerTheatre } from "@/components/media/trailer-theatre";
 import { gamesByEra } from "@/content/games";
@@ -6,6 +6,10 @@ import { gamesByEra } from "@/content/games";
 const threeDGames = gamesByEra("3d");
 const hdGames = gamesByEra("hd");
 const futureGame = gamesByEra("future")[0];
+const pick = (list: typeof threeDGames, id: string) => list.find((game) => game.id === id)!;
+const threeDPortable = threeDGames.filter((game) => ["gta-advance", "liberty-city-stories", "vice-city-stories"].includes(game.id));
+const libertyEpisodes = hdGames.filter((game) => ["lost-and-damned", "chinatown-wars", "ballad-of-gay-tony"].includes(game.id));
+const definitive = hdGames.filter((game) => game.id === "trilogy-definitive");
 
 export function EraPanels() {
   return (
@@ -17,9 +21,12 @@ export function EraPanels() {
           <h2>The<br /><em>3D</em> era</h2>
           <p>Six worlds in six years. Liberty City supplied the depth, Vice City the style, and San Andreas the scale.</p>
         </header>
-        <MemoryDisplay era="3d" />
-        <div className="game-grid game-grid--3d">
-          {threeDGames.map((game) => <GameCard game={game} key={game.id} />)}
+        <div className="story-route">
+          <GameStory game={pick(threeDGames, "gta-3")} />
+          <MemoryDisplay era="3d" />
+          <GameStory game={pick(threeDGames, "vice-city")} />
+          <GameStory game={pick(threeDGames, "san-andreas")} />
+          <SideMissions games={threeDPortable} label="The portable cities" />
         </div>
       </section>
 
@@ -29,8 +36,12 @@ export function EraPanels() {
           <h2>High<br /><em>definition</em></h2>
           <p>The cities become denser, their stories overlap, and one Los Santos grows into a living service spanning generations.</p>
         </header>
-        <div className="game-grid game-grid--hd">
-          {hdGames.map((game) => <GameCard game={game} key={game.id} />)}
+        <div className="story-route">
+          <GameStory game={pick(hdGames, "gta-4")} />
+          <SideMissions games={libertyEpisodes} label="One city, three more stories" />
+          <GameStory game={pick(hdGames, "gta-5")} />
+          <GameStory game={pick(hdGames, "gta-online")} />
+          <SideMissions games={definitive} label="The past returns" />
         </div>
       </section>
 

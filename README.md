@@ -6,6 +6,7 @@
 
 - A cinematic original panorama introduces the full 1997—2026 journey.
 - Every main game, expansion, portable story, GTA Online, and the Definitive Trilogy has a timeline entry.
+- Major releases are full-screen cinematic environments; smaller releases appear as overlapping physical case-file artifacts instead of repeated cards.
 - Each era has its own art direction: pixel-map 2D, neon/cinematic 3D, editorial HD, and tropical Leonida.
 - A scroll-driven Three.js sequence transforms the camera from overhead to street level.
 - Era memory displays recreate the mood of a late-1990s CRT map and an early-2000s 3D night drive.
