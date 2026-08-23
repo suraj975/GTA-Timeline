@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { clampProgress, progressLabel } from "../lib/animation/progress";
 import { eraChapters, games, gamesByEra } from "../content/games";
+import { trailers } from "../content/trailers";
 
 test("clampProgress constrains invalid and out-of-range values", () => {
   assert.equal(clampProgress(Number.NaN), 0);
@@ -25,4 +26,10 @@ test("the public timeline contains every planned release across four eras", () =
     [4, 6, 7, 1],
   );
   assert.equal(new Set(games.map((game) => game.id)).size, games.length);
+});
+
+test("the trailer theatre uses unique YouTube video identifiers", () => {
+  assert.equal(trailers.length, 5);
+  assert.equal(new Set(trailers.map((trailer) => trailer.id)).size, trailers.length);
+  assert.ok(trailers.every((trailer) => /^[\w-]{11}$/.test(trailer.id)));
 });

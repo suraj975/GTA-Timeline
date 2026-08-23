@@ -1,4 +1,6 @@
 import { GameCard } from "@/components/chapters/game-card";
+import { MemoryDisplay } from "@/components/chapters/memory-display";
+import { TrailerTheatre } from "@/components/media/trailer-theatre";
 import { gamesByEra } from "@/content/games";
 
 const threeDGames = gamesByEra("3d");
@@ -15,6 +17,7 @@ export function EraPanels() {
           <h2>The<br /><em>3D</em> era</h2>
           <p>Six worlds in six years. Liberty City supplied the depth, Vice City the style, and San Andreas the scale.</p>
         </header>
+        <MemoryDisplay era="3d" />
         <div className="game-grid game-grid--3d">
           {threeDGames.map((game) => <GameCard game={game} key={game.id} />)}
         </div>
@@ -30,6 +33,8 @@ export function EraPanels() {
           {hdGames.map((game) => <GameCard game={game} key={game.id} />)}
         </div>
       </section>
+
+      <TrailerTheatre />
 
       <section className="wait-section" aria-labelledby="wait-title">
         <p className="eyebrow">The longest road</p>

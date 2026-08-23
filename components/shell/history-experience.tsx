@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { eraChapters } from "@/content/games";
@@ -11,6 +11,7 @@ import { EraPanels } from "@/components/chapters/era-panels";
 
 export function HistoryExperience() {
   const [activeEra, setActiveEra] = useState("intro");
+  const progressBar = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -23,13 +24,36 @@ export function HistoryExperience() {
         onEnterBack: () => setActiveEra(element.dataset.era ?? "intro"),
       }),
     );
-    return () => triggers.forEach((trigger) => trigger.kill());
+    const reveals = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? []
+      : gsap.utils.toArray<HTMLElement>("[data-reveal]").map((element) =>
+          gsap.from(element, {
+            y: 90,
+            opacity: 0,
+            scale: .97,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: { trigger: element, start: "top 88%", once: true },
+          }),
+        );
+    const progress = ScrollTrigger.create({
+      start: 0,
+      end: () => ScrollTrigger.maxScroll(window),
+      onUpdate: ({ progress: value }) => gsap.set(progressBar.current, { scaleX: value }),
+    });
+    return () => {
+      triggers.forEach((trigger) => trigger.kill());
+      reveals.forEach((animation) => animation.kill());
+      progress.kill();
+    };
   }, []);
 
   return (
-    <div className="experience">
-      <a className="skip-link" href="#gta-1997">Skip introduction</a>
+    <div className="experience" data-active-era={activeEra}>
+      <a className="skip-link" href="#2d">Skip introduction</a>
       <div className="noise" aria-hidden="true" />
+      <div className="era-ambient" aria-hidden="true" />
+      <div className="global-progress" aria-hidden="true"><span ref={progressBar} /></div>
       <EraRail chapters={eraChapters} activeId={activeEra} />
       <main>
         <section className="chapter intro-chapter" id="intro" data-era="intro">

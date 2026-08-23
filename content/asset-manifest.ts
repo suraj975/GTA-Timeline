@@ -16,4 +16,20 @@ export const assets: AssetRecord[] = [
     owner: "Project artwork",
     loading: "critical",
   },
+  {
+    id: "era-2d-memory",
+    chapter: "2d",
+    type: "image",
+    source: "Original AI-assisted artwork generated for this project",
+    owner: "Project artwork",
+    loading: "nearby",
+  },
+  {
+    id: "era-3d-memory",
+    chapter: "3d",
+    type: "image",
+    source: "Original AI-assisted artwork generated for this project",
+    owner: "Project artwork",
+    loading: "nearby",
+  },
 ];

@@ -6,7 +6,9 @@ export function GameCard({ game }: { game: GameEntry }) {
     <article
       className={`game-card game-card--${game.era}${game.featured ? " game-card--featured" : ""}`}
       id={game.id}
+      data-game={game.id}
       style={{ "--card-accent": game.accent } as CSSProperties}
+      data-reveal
     >
       <div className="game-art" aria-hidden="true">
         <span className="art-sun" />

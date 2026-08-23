@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gamesByEra } from "@/content/games";
 import { GameCard } from "@/components/chapters/game-card";
+import { MemoryDisplay } from "@/components/chapters/memory-display";
 import { useReducedMotion } from "@/lib/capability/use-reduced-motion";
 
 const games = gamesByEra("2d");
@@ -34,6 +35,7 @@ export function TopDownEra() {
         <h2>The<br /><em>2D</em> world</h2>
         <p>Before the cinematic camera, the city was a moving map. Four releases established the freedom, satire and geography that everything else would build on.</p>
       </header>
+      <MemoryDisplay era="2d" />
       <div className="game-grid game-grid--2d">
         {games.map((game) => <GameCard game={game} key={game.id} />)}
       </div>
