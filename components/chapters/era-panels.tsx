@@ -1,6 +1,7 @@
 import { GameStory, SideMissions } from "@/components/chapters/game-story";
 import { MemoryMoment } from "@/components/chapters/memory-moment";
 import { TrailerTheatre } from "@/components/media/trailer-theatre";
+import { MapComparator } from "@/components/chapters/map-comparator";
 import { gamesByEra } from "@/content/games";
 
 const threeDGames = gamesByEra("3d");
@@ -59,6 +60,8 @@ export function EraPanels() {
         </div>
       </section>
 
+      <MapComparator />
+
       <TrailerTheatre />
 
       <section className="wait-section" aria-labelledby="wait-title">
@@ -74,7 +77,8 @@ export function EraPanels() {
         </div>
       </section>
 
-      <section className="future-era" id="future" data-era="future">
+      <section className="future-era" id="future" data-era="future" data-game="gta-6">
+        <span className="release-anchor" id="gta-6" aria-hidden="true" />
         <div className="future-glow" aria-hidden="true" />
         <div className="future-palm future-palm--one" aria-hidden="true">✦</div>
         <div className="future-palm future-palm--two" aria-hidden="true">✦</div>

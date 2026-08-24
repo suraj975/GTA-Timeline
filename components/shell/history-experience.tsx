@@ -1,17 +1,56 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { eraChapters } from "@/content/games";
-import { EraRail } from "@/components/navigation/era-rail";
+import { EraDial, EraRail } from "@/components/navigation/era-rail";
 import { TopDownEra } from "@/components/chapters/top-down-era";
 import { DimensionShift } from "@/components/chapters/dimension-shift";
 import { EraPanels } from "@/components/chapters/era-panels";
+import { setReducedMotionPreference, useReducedMotion } from "@/lib/capability/use-reduced-motion";
+import { EraRadio } from "@/components/media/era-radio";
 
-export function HistoryExperience() {
+function updateShareableLocation(slug?: string) {
+  if (!slug) return;
+  const url = new URL(window.location.href);
+  if (url.searchParams.get("at") === slug) return;
+  url.searchParams.set("at", slug);
+  window.history.replaceState(null, "", `${url.pathname}${url.search}`);
+}
+
+export function HistoryExperience({ initialTarget }: { initialTarget?: string }) {
   const [activeEra, setActiveEra] = useState("intro");
   const progressBar = useRef<HTMLSpanElement>(null);
+  const locationTarget = useRef<string | null | undefined>(initialTarget);
+  const reducedMotion = useReducedMotion();
+
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    if (locationTarget.current === undefined) {
+      const url = new URL(window.location.href);
+      locationTarget.current = url.hash.slice(1) || url.searchParams.get("at");
+    }
+    const target = locationTarget.current;
+    if (!target) return;
+    let secondFrame = 0;
+    let settleTimer = 0;
+    const alignTarget = () => {
+      ScrollTrigger.refresh();
+      document.getElementById(target)?.scrollIntoView({ behavior: "auto", block: "start" });
+    };
+    const firstFrame = window.requestAnimationFrame(() => {
+      secondFrame = window.requestAnimationFrame(() => {
+        alignTarget();
+        settleTimer = window.setTimeout(alignTarget, 420);
+      });
+    });
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      if (secondFrame) window.cancelAnimationFrame(secondFrame);
+      if (settleTimer) window.clearTimeout(settleTimer);
+    };
+  }, [initialTarget, reducedMotion]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -24,7 +63,15 @@ export function HistoryExperience() {
         onEnterBack: () => setActiveEra(element.dataset.era ?? "intro"),
       }),
     );
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const gameTriggers = gsap.utils.toArray<HTMLElement>("[data-game]").map((element) =>
+      ScrollTrigger.create({
+        trigger: element,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => updateShareableLocation(element.dataset.game),
+        onEnterBack: () => updateShareableLocation(element.dataset.game),
+      }),
+    );
     const reveals = reducedMotion
       ? []
       : gsap.utils.toArray<HTMLElement>("[data-reveal]").map((element) =>
@@ -68,20 +115,26 @@ export function HistoryExperience() {
     });
     return () => {
       triggers.forEach((trigger) => trigger.kill());
+      gameTriggers.forEach((trigger) => trigger.kill());
       reveals.forEach((animation) => animation.kill());
       storyAnimations.forEach((animation) => animation.kill());
       memoryAnimations.forEach((animation) => animation.kill());
       progress.kill();
     };
-  }, []);
+  }, [reducedMotion]);
 
   return (
-    <div className="experience" data-active-era={activeEra}>
+    <div className="experience" data-active-era={activeEra} data-reduced-motion={reducedMotion}>
       <a className="skip-link" href="#2d">Skip introduction</a>
+      <button className="motion-toggle" type="button" aria-pressed={reducedMotion} onClick={() => setReducedMotionPreference(!reducedMotion)}>
+        <span aria-hidden="true">{reducedMotion ? "◇" : "◈"}</span>{reducedMotion ? "Calm mode" : "Full motion"}
+      </button>
       <div className="noise" aria-hidden="true" />
       <div className="era-ambient" aria-hidden="true" />
       <div className="global-progress" aria-hidden="true"><span ref={progressBar} /></div>
       <EraRail chapters={eraChapters} activeId={activeEra} />
+      <EraDial />
+      <EraRadio />
       <main>
         <section className="chapter intro-chapter" id="intro" data-era="intro">
           <div className="hero-panorama" aria-hidden="true" />

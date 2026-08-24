@@ -1,7 +1,15 @@
+import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import type { GameEntry } from "@/content/games";
 
+const storyImages: Partial<Record<GameEntry["id"], { src: string; alt: string }>> = {
+  "gta-3": { src: "/liberty-city-original.jpg", alt: "Original illustration of a rain-soaked Liberty City-inspired street and raised bridge" },
+  "vice-city": { src: "/vice-city-original.jpg", alt: "Original illustration of a neon tropical boulevard at sunset" },
+  "san-andreas": { src: "/san-andreas-original.jpg", alt: "Original illustration of a golden-hour West Coast city expanding toward mountains" },
+};
+
 export function GameStory({ game, children }: { game: GameEntry; children?: ReactNode }) {
+  const storyImage = storyImages[game.id];
   return (
     <article
       className={`game-story game-story--${game.era}`}
@@ -10,11 +18,12 @@ export function GameStory({ game, children }: { game: GameEntry; children?: Reac
       id={game.id}
       style={{ "--story-accent": game.accent } as CSSProperties}
     >
-      <div className="story-world" aria-hidden="true">
-        <span className="story-year">{game.year.replace("—", "")}</span>
-        <span className="story-road" />
-        <span className="story-car" />
-        <span className="story-weather" />
+      <div className="story-world">
+        {storyImage && <Image className="story-world-image" src={storyImage.src} alt={storyImage.alt} fill sizes="100vw" quality={82} />}
+        <span className="story-year" aria-hidden="true">{game.year.replace("—", "")}</span>
+        <span className="story-road" aria-hidden="true" />
+        <span className="story-car" aria-hidden="true" />
+        <span className="story-weather" aria-hidden="true" />
       </div>
       <div className="story-topline">
         <span>{game.index} / 18</span>

@@ -1,15 +1,21 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import dynamic from "next/dynamic";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { EvolutionScene } from "@/components/webgl/evolution-scene";
 import { clampProgress, progressLabel } from "@/lib/animation/progress";
 import { useReducedMotion } from "@/lib/capability/use-reduced-motion";
+
+const EvolutionScene = dynamic(
+  () => import("@/components/webgl/evolution-scene").then((module) => module.EvolutionScene),
+  { ssr: false, loading: () => null },
+);
 
 export function DimensionShift() {
   const section = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
+  const [sceneReady, setSceneReady] = useState(false);
   const reducedMotion = useReducedMotion();
   const headline = progress < .2
     ? ["The map", "wakes"]
@@ -37,10 +43,21 @@ export function DimensionShift() {
     return () => trigger.kill();
   }, [reducedMotion]);
 
+  useEffect(() => {
+    if (reducedMotion || !section.current || sceneReady) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setSceneReady(true);
+      observer.disconnect();
+    }, { rootMargin: "100% 0px" });
+    observer.observe(section.current);
+    return () => observer.disconnect();
+  }, [reducedMotion, sceneReady]);
+
   return (
     <section className="chapter transform-chapter" id="dimension-shift" ref={section}>
       <div className="sticky-stage webgl-stage">
-        <EvolutionScene progress={progress} />
+        {sceneReady && !reducedMotion ? <EvolutionScene progress={progress} /> : <div className="webgl-fallback" aria-hidden="true" />}
         <div className="transition-view" aria-hidden="true">
           <span data-active={progress < .58}>2D / OVERHEAD</span>
           <i><b style={{ transform: `scaleX(${progress})` }} /></i>

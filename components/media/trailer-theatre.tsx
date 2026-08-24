@@ -1,12 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { trailers, type Trailer } from "@/content/trailers";
 
 function TrailerCard({ trailer, onPlay }: { trailer: Trailer; onPlay: (trailer: Trailer) => void }) {
   return (
     <button className="trailer-card" onClick={() => onPlay(trailer)} type="button">
-      <span className="trailer-thumb" style={{ backgroundImage: `url(https://i.ytimg.com/vi/${trailer.id}/hqdefault.jpg)` }}>
+      <span className="trailer-thumb">
+        <Image src={`https://i.ytimg.com/vi_webp/${trailer.id}/maxresdefault.webp`} alt={`${trailer.game} official trailer thumbnail`} fill sizes="(max-width: 720px) 72vw, (max-width: 1100px) 33vw, 20vw" />
         <span className="trailer-play" aria-hidden="true">▶</span>
       </span>
       <span className="trailer-meta"><strong>{trailer.game}</strong><small>{trailer.year} · {trailer.label}</small></span>
