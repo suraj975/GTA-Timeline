@@ -50,6 +50,17 @@ export function HistoryExperience() {
             .fromTo(copy, { y: 100 }, { y: -45, ease: "none" }, 0)
             .fromTo(car, { y: 130 }, { y: -85, ease: "none" }, 0);
         });
+    const memoryAnimations = reducedMotion
+      ? []
+      : gsap.utils.toArray<HTMLElement>("[data-memory]").map((memory) =>
+          ScrollTrigger.create({
+            trigger: memory,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true,
+            onUpdate: ({ progress: value }) => memory.style.setProperty("--memory-progress", value.toFixed(4)),
+          }),
+        );
     const progress = ScrollTrigger.create({
       start: 0,
       end: () => ScrollTrigger.maxScroll(window),
@@ -59,6 +70,7 @@ export function HistoryExperience() {
       triggers.forEach((trigger) => trigger.kill());
       reveals.forEach((animation) => animation.kill());
       storyAnimations.forEach((animation) => animation.kill());
+      memoryAnimations.forEach((animation) => animation.kill());
       progress.kill();
     };
   }, []);

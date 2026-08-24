@@ -1,5 +1,5 @@
 import { GameStory, SideMissions } from "@/components/chapters/game-story";
-import { MemoryDisplay } from "@/components/chapters/memory-display";
+import { MemoryMoment } from "@/components/chapters/memory-moment";
 import { TrailerTheatre } from "@/components/media/trailer-theatre";
 import { gamesByEra } from "@/content/games";
 
@@ -10,6 +10,18 @@ const pick = (list: typeof threeDGames, id: string) => list.find((game) => game.
 const threeDPortable = threeDGames.filter((game) => ["gta-advance", "liberty-city-stories", "vice-city-stories"].includes(game.id));
 const libertyEpisodes = hdGames.filter((game) => ["lost-and-damned", "chinatown-wars", "ballad-of-gay-tony"].includes(game.id));
 const definitive = hdGames.filter((game) => game.id === "trilogy-definitive");
+const onlineMilestones = [
+  { year: "2013", title: "The city opens", detail: "Los Santos becomes a shared world." },
+  { year: "2015", title: "Heists", detail: "Four-player scores reshape the endgame." },
+  { year: "2016", title: "CEO era", detail: "Organizations, warehouses and businesses arrive." },
+  { year: "2017", title: "Gunrunning", detail: "Bunkers and a new underground economy." },
+  { year: "2019", title: "The Diamond", detail: "A casino becomes the city's brightest landmark." },
+  { year: "2020", title: "Cayo Perico", detail: "The first major island expands the map." },
+  { year: "2022", title: "New generation", detail: "The city crosses into its third console era." },
+  { year: "2023", title: "Ten years", detail: "A decade of players, crews and reinvention." },
+  { year: "2025", title: "PC evolves", detail: "The enhanced edition brings the latest systems forward." },
+  { year: "2026", title: "The road ahead", detail: "Los Santos finally points toward Leonida." },
+];
 
 export function EraPanels() {
   return (
@@ -23,9 +35,11 @@ export function EraPanels() {
         </header>
         <div className="story-route">
           <GameStory game={pick(threeDGames, "gta-3")} />
-          <MemoryDisplay era="3d" />
+          <MemoryMoment kind="gta-3" />
           <GameStory game={pick(threeDGames, "vice-city")} />
+          <MemoryMoment kind="vice-city" />
           <GameStory game={pick(threeDGames, "san-andreas")} />
+          <MemoryMoment kind="san-andreas" />
           <SideMissions games={threeDPortable} label="The portable cities" />
         </div>
       </section>
@@ -50,9 +64,12 @@ export function EraPanels() {
       <section className="wait-section" aria-labelledby="wait-title">
         <p className="eyebrow">The longest road</p>
         <h2 id="wait-title">Twelve years<br />in Los Santos</h2>
-        <div className="wait-years" aria-label="Years between GTA V and GTA VI">
-          {[2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026].map((year) => (
-            <span className={year === 2013 || year === 2026 ? "wait-year wait-year--edge" : "wait-year"} key={year}>{year}</span>
+        <p className="wait-intro">One city survived three console generations. Drive across the years to see what kept changing.</p>
+        <div className="wait-years" aria-label="Major GTA Online milestones between GTA V and GTA VI">
+          {onlineMilestones.map((milestone, index) => (
+            <article className={index === 0 || index === onlineMilestones.length - 1 ? "wait-year wait-year--edge" : "wait-year"} key={milestone.year}>
+              <time>{milestone.year}</time><strong>{milestone.title}</strong><p>{milestone.detail}</p>
+            </article>
           ))}
         </div>
       </section>
