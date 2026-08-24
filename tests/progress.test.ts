@@ -12,10 +12,11 @@ test("clampProgress constrains invalid and out-of-range values", () => {
 });
 
 test("progressLabel describes every transformation stage", () => {
-  assert.equal(progressLabel(0), "Top-down view");
-  assert.equal(progressLabel(0.4), "Buildings gaining depth");
-  assert.equal(progressLabel(0.7), "Camera rotating to street level");
-  assert.equal(progressLabel(1), "Third-person city view");
+  assert.equal(progressLabel(0), "The map comes alive");
+  assert.equal(progressLabel(0.4), "The city rises");
+  assert.equal(progressLabel(0.55), "The camera descends");
+  assert.equal(progressLabel(0.75), "Entering the tunnel");
+  assert.equal(progressLabel(1), "Welcome to Liberty City");
 });
 
 test("the public timeline contains every planned release across four eras", () => {

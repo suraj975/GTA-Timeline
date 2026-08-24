@@ -5,8 +5,9 @@ export function clampProgress(value: number) {
 
 export function progressLabel(value: number) {
   const progress = clampProgress(value);
-  if (progress < 0.25) return "Top-down view";
-  if (progress < 0.6) return "Buildings gaining depth";
-  if (progress < 0.88) return "Camera rotating to street level";
-  return "Third-person city view";
+  if (progress < 0.14) return "The map comes alive";
+  if (progress < 0.45) return "The city rises";
+  if (progress < 0.66) return "The camera descends";
+  if (progress < 0.86) return "Entering the tunnel";
+  return "Welcome to Liberty City";
 }

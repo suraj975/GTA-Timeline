@@ -11,6 +11,15 @@ export function DimensionShift() {
   const section = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
   const reducedMotion = useReducedMotion();
+  const headline = progress < .2
+    ? ["The map", "wakes"]
+    : progress < .5
+      ? ["The city", "rises"]
+      : progress < .72
+        ? ["Above becomes", "behind"]
+        : progress < .88
+          ? ["Drive into", "the future"]
+          : ["Welcome to", "Liberty"];
 
   useLayoutEffect(() => {
     if (reducedMotion || !section.current) {
@@ -32,13 +41,23 @@ export function DimensionShift() {
     <section className="chapter transform-chapter" id="dimension-shift" ref={section}>
       <div className="sticky-stage webgl-stage">
         <EvolutionScene progress={progress} />
+        <div className="transition-view" aria-hidden="true">
+          <span data-active={progress < .58}>2D / OVERHEAD</span>
+          <i><b style={{ transform: `scaleX(${progress})` }} /></i>
+          <span data-active={progress >= .58}>3D / CHASE CAM</span>
+        </div>
         <div className="transition-copy">
           <div className="transition-kicker">THE DEFINING JUMP · 2001 · {progressLabel(progress)}</div>
-          <h2 className="transition-title">Above becomes <span>behind</span></h2>
+          <h2 className="transition-title" key={headline.join("-")}>{headline[0]} <span>{headline[1]}</span></h2>
           <div className="transition-meter" style={{ "--transition-progress": progress } as CSSProperties} aria-hidden="true">
             <span />
           </div>
         </div>
+        <ol className="transition-phases" aria-label="Transformation progress">
+          {["Map", "Rise", "Descend", "Tunnel", "Liberty"].map((phase, index) => (
+            <li data-active={progress >= index * .2} key={phase}><span>0{index + 1}</span>{phase}</li>
+          ))}
+        </ol>
       </div>
     </section>
   );
