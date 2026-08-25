@@ -55,7 +55,12 @@ export function DimensionShift() {
   }, [reducedMotion, sceneReady]);
 
   return (
-    <section className="chapter transform-chapter" id="dimension-shift" ref={section}>
+    <section
+      className="chapter transform-chapter"
+      id="dimension-shift"
+      ref={section}
+      style={{ "--transition-progress": progress } as CSSProperties}
+    >
       <div className="sticky-stage webgl-stage">
         {sceneReady && !reducedMotion ? <EvolutionScene progress={progress} /> : <div className="webgl-fallback" aria-hidden="true" />}
         <div className="transition-view" aria-hidden="true">

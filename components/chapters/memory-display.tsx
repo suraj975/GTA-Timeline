@@ -1,7 +1,7 @@
 export function MemoryDisplay({ era }: { era: "2d" | "3d" }) {
   if (era === "2d") {
     return (
-      <figure className="memory-display memory-display--2d" data-reveal>
+      <figure className="memory-display memory-display--2d">
         <div className="memory-machine">
           <div className="memory-screen">
             <div className="memory-image" />
@@ -17,7 +17,7 @@ export function MemoryDisplay({ era }: { era: "2d" | "3d" }) {
   }
 
   return (
-    <figure className="memory-display memory-display--3d" data-reveal>
+    <figure className="memory-display memory-display--3d">
       <div className="memory-console-frame">
         <div className="memory-image" />
         <div className="memory-radio"><span>FLASH FM</span><i>◀</i><b>98.7</b><i>▶</i></div>

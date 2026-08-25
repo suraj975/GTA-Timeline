@@ -72,18 +72,6 @@ export function HistoryExperience({ initialTarget }: { initialTarget?: string })
         onEnterBack: () => updateShareableLocation(element.dataset.game),
       }),
     );
-    const reveals = reducedMotion
-      ? []
-      : gsap.utils.toArray<HTMLElement>("[data-reveal]").map((element) =>
-          gsap.from(element, {
-            y: 90,
-            opacity: 0,
-            scale: .97,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: { trigger: element, start: "top 88%", once: true },
-          }),
-        );
     const storyAnimations = reducedMotion
       ? []
       : gsap.utils.toArray<HTMLElement>("[data-story]").map((story) => {
@@ -116,7 +104,6 @@ export function HistoryExperience({ initialTarget }: { initialTarget?: string })
     return () => {
       triggers.forEach((trigger) => trigger.kill());
       gameTriggers.forEach((trigger) => trigger.kill());
-      reveals.forEach((animation) => animation.kill());
       storyAnimations.forEach((animation) => animation.kill());
       memoryAnimations.forEach((animation) => animation.kill());
       progress.kill();
