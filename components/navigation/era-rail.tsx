@@ -243,7 +243,7 @@ export function EraDial() {
       >
         <span className="era-dial-rail" /><span className="era-dial-fill" style={{ width: `${percent}%` }} /><span className="era-dial-needle" style={{ left: `${percent}%` }} />
         {games.map((game, index) => (
-          <button key={game.id} type="button" className="era-dial-stop" data-active={index === activeIndex} style={{ left: `${index / (games.length - 1) * 100}%`, "--dial-accent": game.accent } as CSSProperties} onPointerDown={(event) => event.stopPropagation()} onClick={(event) => { event.stopPropagation(); jumpTo(index); }} aria-label={`Jump to ${game.title}, ${game.year}`}><i /><span>{game.year.slice(-2)}</span></button>
+          <span key={game.id} className="era-dial-stop" data-active={index === activeIndex} data-complete={index <= position} data-edge={index === 0 || index === games.length - 1} style={{ left: `${index / (games.length - 1) * 100}%`, "--dial-accent": game.accent } as CSSProperties} aria-hidden="true"><i /><small>{game.year.slice(-2)}</small></span>
         ))}
       </div>
       <span className="era-dial-hint">Drag · arrows step · Home / End jump</span>
