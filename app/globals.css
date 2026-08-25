@@ -423,9 +423,9 @@ button, a { font: inherit; }
 .release-artifact::before { content: ""; position: absolute; top: 1rem; right: 1rem; width: 4rem; aspect-ratio: 1; border: 2px solid var(--artifact-accent); border-radius: 50%; opacity: .7; }
 .artifact-index,.release-artifact time { color: var(--artifact-accent); font-family: ui-monospace,monospace; font-size: .58rem; font-weight: 900; letter-spacing: .15em; }
 .release-artifact time { float: right; }
-.release-artifact h4 { max-width: 11ch; margin-top: 4rem; font-family: var(--display); font-size: clamp(2.5rem,4.5vw,5rem); line-height: .86; text-transform: uppercase; }
+.release-artifact h4 { max-width: 11ch; margin-top: 4rem; color: #171914; font-family: var(--display); font-size: clamp(2.5rem,4.5vw,5rem); line-height: .86; text-transform: uppercase; text-shadow: 0 1px 0 rgba(255,255,255,.28); }
 .release-artifact p { max-width: 28rem; margin-top: 1.5rem; color: #54564f; font-size: .82rem; line-height: 1.6; }
-.release-artifact footer { display: grid; gap: .35rem; margin-top: 2rem; padding-top: .8rem; border-top: 1px solid #989487; font-family: ui-monospace,monospace; font-size: .5rem; letter-spacing: .08em; text-transform: uppercase; }
+.release-artifact footer { display: grid; gap: .35rem; margin-top: 2rem; padding-top: .8rem; border-top: 1px solid #989487; color: #3c3e37; font-family: ui-monospace,monospace; font-size: .5rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 
 @keyframes cue { 0%,100% { transform: scaleX(.45); transform-origin: left; } 50% { transform: scaleX(1); transform-origin: left; } }
 @keyframes hero-breathe { from { transform: scale(1.025); } to { transform: scale(1.075); } }
