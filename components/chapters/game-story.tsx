@@ -44,7 +44,7 @@ export function GameStory({ game, children }: { game: GameEntry; children?: Reac
 
 export function SideMissions({ games, label }: { games: GameEntry[]; label: string }) {
   return (
-    <section className="side-missions" aria-label={label} data-reveal>
+    <section className="side-missions" aria-label={label}>
       <header><span>Side missions / essential detours</span><h3>{label}</h3></header>
       <div className="artifact-desk">
         {games.map((game, position) => (
