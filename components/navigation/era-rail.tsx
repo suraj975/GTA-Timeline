@@ -131,6 +131,7 @@ export function EraDial() {
   const dragging = useRef(false);
   const [position, setPosition] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileExpanded, setMobileExpanded] = useState(false);
 
   const elementTops = () => games.map((game) => {
     const element = document.getElementById(game.id);
@@ -223,10 +224,21 @@ export function EraDial() {
   const percent = position / (games.length - 1) * 100;
   const active = games[activeIndex];
   return (
-    <div className="era-dial-shell">
+    <div className="era-dial-shell" data-mobile-expanded={mobileExpanded}>
       <div className="era-dial-readout"><span>{active.year}</span><strong>{active.displayTitle}</strong><small>{activeIndex + 1} / {games.length}</small></div>
+      <button
+        className="era-dial-mobile-toggle"
+        type="button"
+        aria-expanded={mobileExpanded}
+        aria-controls="release-timeline-control"
+        onClick={() => setMobileExpanded((value) => !value)}
+      >
+        <span aria-hidden="true">{mobileExpanded ? "×" : "⌁"}</span>
+        {mobileExpanded ? "Close" : "Timeline"}
+      </button>
       <div
         className="era-dial"
+        id="release-timeline-control"
         ref={dial}
         role="slider"
         tabIndex={0}

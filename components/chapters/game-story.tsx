@@ -6,6 +6,9 @@ const storyImages: Partial<Record<GameEntry["id"], { src: string; alt: string }>
   "gta-3": { src: "/liberty-city-original.jpg", alt: "Original illustration of a rain-soaked Liberty City-inspired street and raised bridge" },
   "vice-city": { src: "/vice-city-original.jpg", alt: "Original illustration of a neon tropical boulevard at sunset" },
   "san-andreas": { src: "/san-andreas-original.jpg", alt: "Original illustration of a golden-hour West Coast city expanding toward mountains" },
+  "gta-4": { src: "/gta-4-original.webp", alt: "Original illustration of a cold rain-soaked metropolis and steel bridge at night" },
+  "gta-5": { src: "/gta-5-original.webp", alt: "Original illustration of a vast golden-hour coastal basin and freeway network" },
+  "gta-online": { src: "/gta-online-original.webp", alt: "Original illustration of an electric blue-hour metropolis and illuminated freeway" },
 };
 
 export function GameStory({ game, children }: { game: GameEntry; children?: ReactNode }) {
@@ -23,6 +26,9 @@ export function GameStory({ game, children }: { game: GameEntry; children?: Reac
         <span className="story-year" aria-hidden="true">{game.year.replace("—", "")}</span>
         <span className="story-road" aria-hidden="true" />
         <span className="story-car" aria-hidden="true" />
+        <span className="story-depth story-depth--far" aria-hidden="true" />
+        <span className="story-depth story-depth--near" aria-hidden="true" />
+        <span className="story-headlights" aria-hidden="true" />
         <span className="story-weather" aria-hidden="true" />
       </div>
       <div className="story-topline">

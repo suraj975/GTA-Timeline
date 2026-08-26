@@ -78,12 +78,19 @@ export function HistoryExperience({ initialTarget }: { initialTarget?: string })
           const world = story.querySelector<HTMLElement>(".story-world");
           const copy = story.querySelector<HTMLElement>(".story-copy");
           const car = story.querySelector<HTMLElement>(".story-car");
-          return gsap.timeline({
+          const farDepth = story.querySelector<HTMLElement>(".story-depth--far");
+          const nearDepth = story.querySelector<HTMLElement>(".story-depth--near");
+          const headlights = story.querySelector<HTMLElement>(".story-headlights");
+          const timeline = gsap.timeline({
             scrollTrigger: { trigger: story, start: "top bottom", end: "bottom top", scrub: .8 },
           })
             .fromTo(world, { scale: 1.14, yPercent: -3 }, { scale: 1.02, yPercent: 3, ease: "none" }, 0)
             .fromTo(copy, { y: 100 }, { y: -45, ease: "none" }, 0)
             .fromTo(car, { y: 130 }, { y: -85, ease: "none" }, 0);
+          if (farDepth) timeline.fromTo(farDepth, { xPercent: 4 }, { xPercent: -3, ease: "none" }, 0);
+          if (nearDepth) timeline.fromTo(nearDepth, { xPercent: 12 }, { xPercent: -12, ease: "none" }, 0);
+          if (headlights) timeline.fromTo(headlights, { xPercent: 18, opacity: .15 }, { xPercent: -22, opacity: .8, ease: "none" }, 0);
+          return timeline;
         });
     const memoryAnimations = reducedMotion
       ? []
