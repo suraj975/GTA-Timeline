@@ -2,6 +2,7 @@ import { GameStory, SideMissions } from "@/components/chapters/game-story";
 import { MemoryMoment } from "@/components/chapters/memory-moment";
 import { TrailerTheatre } from "@/components/media/trailer-theatre";
 import { MapComparator } from "@/components/chapters/map-comparator";
+import { SupportArchive } from "@/components/support/support-archive";
 import { gamesByEra } from "@/content/games";
 
 const threeDGames = gamesByEra("3d");
@@ -94,7 +95,8 @@ export function EraPanels() {
       <section className="finale" aria-labelledby="finale-title">
         <p className="eyebrow">The complete route · 1997—2026</p>
         <h2 id="finale-title">From above<br /><span>to Leonida.</span></h2>
-        <a href="#intro">Drive it again <span aria-hidden="true">↑</span></a>
+        <div className="finale-actions"><a href="#intro">Drive it again <span aria-hidden="true">↑</span></a></div>
+        <SupportArchive />
       </section>
     </>
   );
