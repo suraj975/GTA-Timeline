@@ -325,7 +325,7 @@ button, a { font: inherit; }
 .shelf-edge { position: absolute; right: -1%; bottom: -.7rem; left: -1%; height: 1.15rem; border-top: 1px solid #62503b; background: linear-gradient(#251b12,#080604); box-shadow: 0 1rem 2rem #000; }
 
 .story-route { position: relative; z-index: 4; width: 100vw; margin-right: calc(50% - 50vw); margin-left: calc(50% - 50vw); }
-.game-story { --story-accent: var(--acid); position: relative; display: grid; min-height: 96svh; overflow: hidden; align-content: end; padding: clamp(6rem,10vw,10rem) max(1.5rem,9vw) clamp(4rem,7vw,7rem); color: #fff; isolation: isolate; }
+.game-story { --story-accent: var(--acid); position: relative; display: grid; min-height: 96svh; overflow: hidden; align-content: end; padding: clamp(6rem,10vw,10rem) max(1.5rem,9vw) clamp(7rem,9vw,9rem); color: #fff; isolation: isolate; }
 .story-world { position: absolute; z-index: -2; inset: -8%; overflow: hidden; background-image: linear-gradient(90deg,rgba(4,5,4,.78),rgba(4,5,4,.12) 55%,rgba(4,5,4,.45)),url("/timeline-panorama.webp"); background-position: center; background-size: cover; will-change: transform; }
 .story-world-image { z-index: 0; object-fit: cover; }
 .story-world:has(.story-world-image)::before { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg,rgba(5,7,8,.9),rgba(5,7,8,.08) 62%,rgba(5,7,8,.35)); }
