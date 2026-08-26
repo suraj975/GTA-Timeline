@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { trailers, type Trailer } from "@/content/trailers";
 import { useReducedMotion } from "@/lib/capability/use-reduced-motion";
 
@@ -90,13 +90,18 @@ export function TrailerTheatre() {
               <div className="case-base">
                 <div className="case-player">
                   {playerReady ? (
-                    <iframe
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      src={`https://www.youtube-nocookie.com/embed/${active.id}?autoplay=1&rel=0`}
-                      title={`${active.game}: ${active.label}`}
-                    />
+                    <div className="case-screening">
+                      <Image src={`https://i.ytimg.com/vi/${active.id}/hqdefault.jpg`} alt="" fill sizes="48vw" />
+                      <div className="screening-vignette" />
+                      <div className="screening-copy">
+                        <span>R★ OFFICIAL / {active.year}</span>
+                        <strong>{active.label}</strong>
+                        <a href={`https://www.youtube.com/watch?v=${active.id}`} target="_blank" rel="noreferrer">
+                          <i aria-hidden="true" /> Watch official trailer
+                        </a>
+                        <small>Opens on YouTube so mature-content verification works correctly.</small>
+                      </div>
+                    </div>
                   ) : (
                     <div className="case-loading"><span /><p>OPENING ARCHIVE CASE</p><strong>{active.game}</strong></div>
                   )}
@@ -112,7 +117,7 @@ export function TrailerTheatre() {
                 </div>
                 <div className="case-door-inside">
                   <span className="disc-clips" />
-                  <span className="archive-disc"><i /><b>{active.game}</b><small>OFFICIAL TRAILER</small></span>
+                  <span className="archive-disc" style={{ "--disc-art": `url(https://i.ytimg.com/vi/${active.id}/hqdefault.jpg)` } as CSSProperties}><i /><b>{active.game}</b><small>OFFICIAL TRAILER</small></span>
                   <em>{caseLabel(active.game)}</em>
                 </div>
               </div>

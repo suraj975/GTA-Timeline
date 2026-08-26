@@ -14,13 +14,13 @@ const ease = (value: number, from: number, to: number) => {
   return normalized * normalized * (3 - 2 * normalized);
 };
 
-const buildingData = Array.from({ length: 38 }, (_, index) => {
+const buildingData = Array.from({ length: 72 }, (_, index) => {
   const row = Math.floor(index / 2);
   const side = index % 2 ? 1 : -1;
   const lane = row % 3;
   return {
     x: side * (4.1 + lane * 2.25),
-    z: 15 - row * 2.2,
+    z: 18 - row * 2.3,
     width: 1.65 + ((row * 7) % 8) * 0.18,
     depth: 1.55 + ((row * 5) % 7) * 0.17,
     height: 2.2 + ((row * 11 + lane * 3) % 9) * 0.65,
@@ -181,7 +181,7 @@ function Traffic({ progress }: EvolutionSceneProps) {
     cars.current.forEach((car, index) => {
       if (!car) return;
       const direction = index % 2 ? 1 : -1;
-      car.position.z = ((clock.elapsedTime * direction * (1.3 + index * .08) + index * 7 + 30) % 45) - 22;
+      car.position.z = THREE.MathUtils.euclideanModulo(clock.elapsedTime * direction * (1.3 + index * .08) + index * 11, 86) - 62;
       car.position.x = direction > 0 ? -1.05 : 1.05;
       car.rotation.y = direction > 0 ? Math.PI : 0;
       car.scale.set(.62, .12 + depth * .5, .62);
@@ -190,7 +190,7 @@ function Traffic({ progress }: EvolutionSceneProps) {
 
   return (
     <>
-      {Array.from({ length: 7 }, (_, index) => (
+      {Array.from({ length: 12 }, (_, index) => (
         <group key={index} ref={(node) => { cars.current[index] = node; }} position={[0, .23, 0]}>
           <mesh castShadow><boxGeometry args={[.85, .34, 1.65]} /><meshStandardMaterial color={index % 3 === 0 ? "#ce4a3c" : index % 3 === 1 ? "#4d79a8" : "#d5c07a"} roughness={.55} /></mesh>
           <mesh position={[0, .27, .1]}><boxGeometry args={[.62, .26, .72]} /><meshStandardMaterial color="#17242a" /></mesh>
@@ -231,8 +231,8 @@ function StreetDetails({ progress }: EvolutionSceneProps) {
   const rise = ease(progress, .36, .62);
   return (
     <group scale={[1, rise, 1]}>
-      {Array.from({ length: 16 }, (_, index) => {
-        const z = 14 - index * 2.5;
+      {Array.from({ length: 34 }, (_, index) => {
+        const z = 18 - index * 2.6;
         return (
           <group key={index}>
             <mesh position={[-2.35, 1.15, z]}><cylinderGeometry args={[.045, .065, 2.3, 8]} /><meshStandardMaterial color="#202829" metalness={.7} /></mesh>
@@ -336,13 +336,13 @@ function CityWorld({ progress }: EvolutionSceneProps) {
     if (fog.current) {
       fog.current.color.copy(currentColor);
       fog.current.near = THREE.MathUtils.lerp(16, 5, ease(p, .52, .82));
-      fog.current.far = THREE.MathUtils.lerp(42, 29, ease(p, .52, .82));
+      fog.current.far = THREE.MathUtils.lerp(58, 44, ease(p, .52, .82));
     }
   });
 
   return (
     <>
-      <fog ref={fog} attach="fog" args={["#06100c", 16, 42]} />
+      <fog ref={fog} attach="fog" args={["#06100c", 16, 58]} />
       <ambientLight intensity={1.05} color="#92b7ae" />
       <directionalLight
         castShadow
@@ -353,12 +353,12 @@ function CityWorld({ progress }: EvolutionSceneProps) {
         shadow-mapSize-height={1024}
       />
       <hemisphereLight intensity={.7} color="#8bd5ff" groundColor="#07100d" />
-      <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[42, 62]} /><meshStandardMaterial color="#17211f" roughness={1} /></mesh>
-      <mesh receiveShadow position={[0, .025, -4]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[4.1, 54]} /><meshStandardMaterial color="#080b0c" roughness={.84} /></mesh>
-      <mesh receiveShadow position={[-2.75, .05, -4]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[1.25, 54]} /><meshStandardMaterial color="#515552" roughness={1} /></mesh>
-      <mesh receiveShadow position={[2.75, .05, -4]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[1.25, 54]} /><meshStandardMaterial color="#515552" roughness={1} /></mesh>
-      {[12, 4, -4, -16].map((z) => <mesh receiveShadow key={z} position={[0, .035, z]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[42, 2.6]} /><meshStandardMaterial color="#0b0f10" roughness={.9} /></mesh>)}
-      {Array.from({ length: 25 }, (_, index) => <mesh key={index} position={[0, .065, 18 - index * 2.05]}><boxGeometry args={[.08, .02, .75]} /><meshBasicMaterial color="#e6d36a" /></mesh>)}
+      <mesh receiveShadow position={[0, 0, -27]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[42, 140]} /><meshStandardMaterial color="#17211f" roughness={1} /></mesh>
+      <mesh receiveShadow position={[0, .025, -27]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[4.1, 140]} /><meshStandardMaterial color="#080b0c" roughness={.84} /></mesh>
+      <mesh receiveShadow position={[-2.75, .05, -27]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[1.25, 140]} /><meshStandardMaterial color="#515552" roughness={1} /></mesh>
+      <mesh receiveShadow position={[2.75, .05, -27]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[1.25, 140]} /><meshStandardMaterial color="#515552" roughness={1} /></mesh>
+      {[18, 10, 2, -6, -14, -22, -30, -38, -46, -54, -62, -70, -78].map((z) => <mesh receiveShadow key={z} position={[0, .035, z]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[42, 2.6]} /><meshStandardMaterial color="#0b0f10" roughness={.9} /></mesh>)}
+      {Array.from({ length: 61 }, (_, index) => <mesh key={index} position={[0, .065, 28 - index * 2.05]}><boxGeometry args={[.08, .02, .75]} /><meshBasicMaterial color="#e6d36a" /></mesh>)}
       <InstancedCity progress={progress} />
       <CityWindows progress={progress} />
       <StreetDetails progress={progress} />
