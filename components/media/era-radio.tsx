@@ -13,11 +13,11 @@ type Station = {
 };
 
 const stations: Station[] = [
-  { name: "Head Signal", era: "1997 · 2D city", wave: "square", root: 45, notes: [0, 7, 12, 7, 3, 10], color: "#dfff36", tempo: 360 },
-  { name: "Ocean Drive", era: "2002 · Vice", wave: "sawtooth", root: 40, notes: [0, 3, 7, 10, 12, 10], color: "#ff5db1", tempo: 410 },
-  { name: "West Coast 92", era: "2004 · San Andreas", wave: "triangle", root: 38, notes: [0, 12, 10, 7, 3, 7], color: "#a6d263", tempo: 430 },
-  { name: "The Journey", era: "2008 · Liberty", wave: "sine", root: 41, notes: [0, 7, 12, 5, 10], color: "#9fc7da", tempo: 520 },
-  { name: "Non-Stop Future", era: "2013—2026 · HD", wave: "sawtooth", root: 43, notes: [12, 12, 15, 19, 17, 15], color: "#ff896c", tempo: 390 },
+  { name: "Head Signal", era: "1997 · 2D city", wave: "square", root: 57, notes: [0, 7, 12, 7, 3, 10], color: "#dfff36", tempo: 360 },
+  { name: "Ocean Drive", era: "2002 · Vice", wave: "sawtooth", root: 52, notes: [0, 3, 7, 10, 12, 10], color: "#ff5db1", tempo: 410 },
+  { name: "West Coast 92", era: "2004 · San Andreas", wave: "triangle", root: 50, notes: [0, 12, 10, 7, 3, 7], color: "#a6d263", tempo: 430 },
+  { name: "The Journey", era: "2008 · Liberty", wave: "sine", root: 53, notes: [0, 7, 12, 5, 10], color: "#9fc7da", tempo: 520 },
+  { name: "Non-Stop Future", era: "2013—2026 · HD", wave: "sawtooth", root: 55, notes: [0, 0, 3, 7, 5, 3], color: "#ff896c", tempo: 390 },
 ];
 
 const stationForScroll = () => {
@@ -78,7 +78,7 @@ export function EraRadio() {
     if (!AudioConstructor) return null;
     const audio = new AudioConstructor();
     const output = audio.createGain();
-    output.gain.value = .34;
+    output.gain.value = .42;
     output.connect(audio.destination);
 
     const buffer = audio.createBuffer(1, audio.sampleRate * 2, audio.sampleRate);
@@ -120,7 +120,7 @@ export function EraRadio() {
     filter.frequency.value = ident ? 1900 : 780;
     filter.Q.value = .7;
     gain.gain.setValueAtTime(.0001, start);
-    gain.gain.exponentialRampToValueAtTime(ident ? .045 : .026, start + .035);
+    gain.gain.exponentialRampToValueAtTime(ident ? .06 : .042, start + .035);
     gain.gain.exponentialRampToValueAtTime(.0001, start + duration);
     oscillator.connect(filter);
     filter.connect(gain);
