@@ -144,7 +144,7 @@ export function MapComparator() {
             <div><span>CHARACTER</span><strong>{active.character}</strong><small>{active.confidence}</small></div>
           </div>
 
-          {mode === "scale" && <div className="scale-callout"><span>TRUE SCALE / GTA V BASELINE</span><strong>{ratio ? `${active.name} fits ${ratio.toFixed(1)}× inside GTA V` : active.id === "v" ? "Choose another world to compare" : "Area remains undisclosed"}</strong></div>}
+          {mode === "scale" && <div className="scale-callout"><span>ESTIMATED SCALE / GTA V BASELINE</span><strong>{ratio ? `${active.name} is estimated to fit ${ratio.toFixed(1)}× inside GTA V` : active.id === "v" ? "Choose another world to compare" : "Official area remains undisclosed"}</strong></div>}
           {mode === "drive" && <div className="drive-readout"><i /><span>COAST-TO-COUNTY ROUTE</span><strong>{distance ? `${distance} KM / RUNNING` : "ROUTE UNKNOWN"}</strong></div>}
         </div>
 

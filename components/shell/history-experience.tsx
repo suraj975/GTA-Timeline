@@ -137,12 +137,12 @@ export function HistoryExperience({ initialTarget }: { initialTarget?: string })
             <div className="eyebrow">The evolution of an open-world icon</div>
             <h1 className="intro-title"><span>Grand Theft</span> History</h1>
             <p className="intro-subtitle">
-              Eighteen releases. Four eras. One road from a pixel city in 1997 to the sun-bleached state of Leonida.
+              Eighteen chapters. Four eras. One road from a pixel city in 1997 to the sun-bleached state of Leonida.
             </p>
             <div className="scroll-cue" aria-hidden="true">Scroll to drive</div>
           </div>
           <div className="hero-stats" aria-label="Timeline summary">
-            <div><strong>18</strong><span>Releases</span></div>
+            <div><strong>18</strong><span>Chapters</span></div>
             <div><strong>29</strong><span>Years</span></div>
             <div><strong>04</strong><span>Eras</span></div>
           </div>
@@ -153,7 +153,8 @@ export function HistoryExperience({ initialTarget }: { initialTarget?: string })
       </main>
       <footer className="prototype-note">
         <strong>Independent digital archive.</strong> Not affiliated with or endorsed by Rockstar Games or
-        Take-Two Interactive. Visual artwork is original and informational release details are presented for historical commentary.
+        Take-Two Interactive. Visual artwork and the procedural soundtrack are original. Release details and official trailer links
+        were checked against Rockstar Games&apos; archive; map-area comparisons use clearly labelled community estimates.
       </footer>
     </div>
   );

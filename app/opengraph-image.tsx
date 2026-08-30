@@ -15,7 +15,7 @@ export default function OpenGraphImage() {
         <span style={{ fontSize: 150, fontWeight: 900, lineHeight: .82, letterSpacing: -7, color: "#dfff36" }}>HISTORY</span>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", fontSize: 24 }}>
-        <span>FROM ABOVE TO LEONIDA</span><span style={{ color: "#94a09a" }}>18 RELEASES · 4 ERAS · ONE ROAD</span>
+        <span>FROM ABOVE TO LEONIDA</span><span style={{ color: "#94a09a" }}>18 CHAPTERS · 4 ERAS · ONE ROAD</span>
       </div>
     </div>,
     size,

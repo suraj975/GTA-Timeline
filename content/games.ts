@@ -21,7 +21,7 @@ export const eraChapters: EraChapter[] = [
   { id: "intro", navLabel: "Start", year: "1997", accent: "#eaff3d" },
   { id: "2d", navLabel: "2D", year: "97—99", accent: "#eaff3d" },
   { id: "3d", navLabel: "3D", year: "01—06", accent: "#ff5db1" },
-  { id: "hd", navLabel: "HD", year: "08—25", accent: "#68cfff" },
+  { id: "hd", navLabel: "HD", year: "08—NOW", accent: "#68cfff" },
   { id: "future", navLabel: "VI", year: "2026", accent: "#ff896c" },
 ];
 
@@ -40,9 +40,9 @@ export const games: GameEntry[] = [
   { id: "lost-and-damned", title: "The Lost and Damned", displayTitle: "The Lost and Damned", year: "2009", era: "hd", city: "Liberty City", platform: "Xbox 360 · PC · PlayStation 3", change: "Another point of view", summary: "The same streets tell a rougher parallel story from the seat of a motorcycle.", accent: "#cf6c52", index: "12" },
   { id: "chinatown-wars", title: "Grand Theft Auto: Chinatown Wars", displayTitle: "Chinatown Wars", year: "2009", era: "hd", city: "Liberty City", platform: "Nintendo DS · PSP · Mobile", change: "Touch the city", summary: "A graphic-novel look and tactile systems reinvent the overhead view for handheld screens.", accent: "#ffdf54", index: "13" },
   { id: "ballad-of-gay-tony", title: "The Ballad of Gay Tony", displayTitle: "The Ballad of Gay Tony", year: "2009", era: "hd", city: "Liberty City", platform: "Xbox 360 · PC · PlayStation 3", change: "Spectacle returns", summary: "Nightlife, color and airborne excess reveal a brighter side of the same concrete city.", accent: "#d868ff", index: "14" },
-  { id: "gta-5", title: "Grand Theft Auto V", displayTitle: "GTA V", year: "2013", era: "hd", city: "Los Santos · Blaine County", platform: "Console · PC", change: "Three lives, one world", summary: "Character switching turns a huge state into three overlapping stories and viewpoints.", accent: "#91c959", index: "15", featured: true },
-  { id: "gta-online", title: "Grand Theft Auto Online", displayTitle: "GTA Online", year: "2013—", era: "hd", city: "Southern San Andreas", platform: "Console · PC", change: "The living city", summary: "Heists, businesses and constant expansion transform one release into a decade-long platform.", accent: "#5bd7ff", index: "16", featured: true },
-  { id: "trilogy-definitive", title: "The Trilogy — The Definitive Edition", displayTitle: "The Trilogy — Definitive", year: "2021", era: "hd", city: "Liberty · Vice · San Andreas", platform: "Console · PC · Mobile", change: "The past remastered", summary: "The three landmark 3D-era cities return together for a new generation of hardware.", accent: "#f19d4c", index: "17" },
+  { id: "gta-5", title: "Grand Theft Auto V", displayTitle: "GTA V", year: "2013", era: "hd", city: "Los Santos · Blaine County", platform: "PlayStation · Xbox · PC", change: "Three lives, one world", summary: "Character switching turns a huge state into three overlapping stories and viewpoints.", accent: "#91c959", index: "15", featured: true },
+  { id: "gta-online", title: "Grand Theft Auto Online", displayTitle: "GTA Online", year: "2013—", era: "hd", city: "Southern San Andreas", platform: "PlayStation · Xbox · PC", change: "The living city", summary: "Heists, businesses and constant expansion transform one release into a decade-long platform.", accent: "#5bd7ff", index: "16", featured: true },
+  { id: "trilogy-definitive", title: "The Trilogy — The Definitive Edition", displayTitle: "The Trilogy — Definitive", year: "2021", era: "hd", city: "Liberty · Vice · San Andreas", platform: "PlayStation · Xbox · Switch · PC · Mobile", change: "The past remastered", summary: "The three landmark 3D-era cities return together for a new generation of hardware.", accent: "#f19d4c", index: "17" },
   { id: "gta-6", title: "Grand Theft Auto VI", displayTitle: "GTA VI", year: "2026", era: "future", city: "Vice City · Leonida", platform: "PlayStation 5 · Xbox Series X|S", change: "Back to Vice", summary: "The journey circles back to Vice City—now part of a wider Leonida and viewed through a modern lens.", accent: "#ff896c", index: "18", featured: true },
 ];
 

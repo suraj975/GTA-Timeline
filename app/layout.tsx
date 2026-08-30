@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "From Above to Leonida — Grand Theft History", template: "%s — Grand Theft History" },
   description:
-    "An interactive timeline covering 18 Grand Theft Auto releases—from the top-down streets of 1997 to Leonida in 2026.",
+    "An interactive timeline covering 18 Grand Theft Auto chapters—from the top-down streets of 1997 to Leonida in 2026.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

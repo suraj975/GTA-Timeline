@@ -19,7 +19,7 @@ test("progressLabel describes every transformation stage", () => {
   assert.equal(progressLabel(1), "Welcome to Liberty City");
 });
 
-test("the public timeline contains every planned release across four eras", () => {
+test("the public timeline contains every curated chapter across four eras", () => {
   assert.equal(games.length, 18);
   assert.equal(eraChapters.length, 5);
   assert.deepEqual(
@@ -30,7 +30,7 @@ test("the public timeline contains every planned release across four eras", () =
 });
 
 test("the trailer theatre uses unique YouTube video identifiers", () => {
-  assert.equal(trailers.length, 5);
+  assert.equal(trailers.length, 6);
   assert.equal(new Set(trailers.map((trailer) => trailer.id)).size, trailers.length);
   assert.ok(trailers.every((trailer) => /^[\w-]{11}$/.test(trailer.id)));
 });

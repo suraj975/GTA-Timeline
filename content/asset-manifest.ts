@@ -32,4 +32,12 @@ export const assets: AssetRecord[] = [
     owner: "Project artwork",
     loading: "nearby",
   },
+  {
+    id: "era-radio-score",
+    chapter: "global",
+    type: "audio",
+    source: "Original procedural Web Audio score generated in the browser",
+    owner: "Project audio",
+    loading: "critical",
+  },
 ];

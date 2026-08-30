@@ -56,14 +56,7 @@ export function SupportArchive() {
                 <button type="button" disabled>Link coming soon</button>
               </article>
               <article>
-                <span>02 / SPONSORS</span>
-                <i aria-hidden="true">◎</i>
-                <h3>GitHub Sponsors</h3>
-                <p>Support development once the sponsor profile is ready.</p>
-                <button type="button" disabled>Profile coming soon</button>
-              </article>
-              <article>
-                <span>03 / CRYPTO</span>
+                <span>02 / CRYPTO</span>
                 <i aria-hidden="true">◇</i>
                 <h3>Digital wallets</h3>
                 <p>Optional USDC, SOL or ETH support—never the only route.</p>

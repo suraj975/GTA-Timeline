@@ -39,6 +39,7 @@ export function TrailerTheatre() {
   const [active, setActive] = useState<Trailer | null>(null);
   const [playerReady, setPlayerReady] = useState(false);
   const openTimer = useRef<number>(0);
+  const theatre = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
 
   const selectTrailer = (trailer: Trailer) => {
@@ -46,6 +47,9 @@ export function TrailerTheatre() {
     setPlayerReady(false);
     setActive(trailer);
     openTimer.current = window.setTimeout(() => setPlayerReady(true), reducedMotion ? 40 : 1050);
+    window.requestAnimationFrame(() => {
+      theatre.current?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" });
+    });
   };
 
   const closeCase = () => {
@@ -77,11 +81,11 @@ export function TrailerTheatre() {
         <p>Choose a case from the archive shelf. It opens into a private screening room and loads video only after selection.</p>
       </header>
 
-      <div className="case-theatre" data-active={Boolean(active)} data-ready={playerReady}>
+      <div className="case-theatre" data-active={Boolean(active)} data-ready={playerReady} ref={theatre}>
         <div className="archive-idle" aria-hidden={Boolean(active)}>
           <span>R★ / PHYSICAL MEDIA ARCHIVE</span>
           <strong>Choose a case</strong>
-          <small>Five reveals · three console generations · one shelf</small>
+          <small>Six reveals · three console generations · one shelf</small>
         </div>
 
         {active && (

@@ -67,7 +67,7 @@ export function EraPanels() {
 
       <section className="wait-section" aria-labelledby="wait-title">
         <p className="eyebrow">The longest road</p>
-        <h2 id="wait-title">Twelve years<br />in Los Santos</h2>
+        <h2 id="wait-title">Thirteen years<br />in Los Santos</h2>
         <p className="wait-intro">One city survived three console generations. Drive across the years to see what kept changing.</p>
         <div className="wait-years" aria-label="Major GTA Online milestones between GTA V and GTA VI">
           {onlineMilestones.map((milestone, index) => (

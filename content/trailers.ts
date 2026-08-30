@@ -12,4 +12,5 @@ export const trailers: Trailer[] = [
   { id: "M80K51DosFo", game: "GTA IV", label: "Things Will Be Different", year: "2007" },
   { id: "QkkoHAzjnUs", game: "GTA V", label: "Trailer 1", year: "2011" },
   { id: "QdBZY2fkU-0", game: "GTA VI", label: "Trailer 1", year: "2023" },
+  { id: "VQRLujxTm3c", game: "GTA VI", label: "Trailer 2", year: "2025" },
 ];
