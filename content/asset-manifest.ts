@@ -36,8 +36,8 @@ export const assets: AssetRecord[] = [
     id: "era-radio-score",
     chapter: "global",
     type: "audio",
-    source: "Original procedural Web Audio score generated in the browser",
-    owner: "Project audio",
-    loading: "critical",
+    source: "Five credited CC0 recordings from OpenGameArt; full provenance in public/audio/README.md",
+    owner: "Zane Little Music · MintoDog · omfgdude · yd · Fupi",
+    loading: "deferred",
   },
 ];

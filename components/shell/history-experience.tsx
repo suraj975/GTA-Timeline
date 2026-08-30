@@ -153,7 +153,7 @@ export function HistoryExperience({ initialTarget }: { initialTarget?: string })
       </main>
       <footer className="prototype-note">
         <strong>Independent digital archive.</strong> Not affiliated with or endorsed by Rockstar Games or
-        Take-Two Interactive. Visual artwork and the procedural soundtrack are original. Release details and official trailer links
+        Take-Two Interactive. Visual artwork is original; the archive radio uses credited CC0 recordings. Release details and official trailer links
         were checked against Rockstar Games&apos; archive; map-area comparisons use clearly labelled community estimates.
       </footer>
     </div>
