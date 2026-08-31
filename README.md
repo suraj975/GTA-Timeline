@@ -16,6 +16,10 @@
 
 No copied game art, music, trailers, or game assets are included. The site is an independent historical commentary project and is not affiliated with Rockstar Games or Take-Two Interactive.
 
+## Project research
+
+- [Buy Me a Coffee viability and analytics plan](docs/buy-me-a-coffee-analysis.md)
+
 ## Development
 
 ```bash
