@@ -2,6 +2,8 @@ import { GameStory, SideMissions } from "@/components/chapters/game-story";
 import { MemoryMoment } from "@/components/chapters/memory-moment";
 import { TrailerTheatre } from "@/components/media/trailer-theatre";
 import { MapComparator } from "@/components/chapters/map-comparator";
+import { CommercialImpact } from "@/components/chapters/commercial-impact";
+import { CopiesOnStreet } from "@/components/chapters/copies-on-street";
 import { SupportArchive } from "@/components/support/support-archive";
 import { gamesByEra } from "@/content/games";
 
@@ -62,6 +64,10 @@ export function EraPanels() {
       </section>
 
       <MapComparator />
+
+      <CommercialImpact />
+
+      <CopiesOnStreet />
 
       <TrailerTheatre />
 

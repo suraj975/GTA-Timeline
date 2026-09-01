@@ -63,13 +63,13 @@ export function HistoryExperience({ initialTarget }: { initialTarget?: string })
         onEnterBack: () => setActiveEra(element.dataset.era ?? "intro"),
       }),
     );
-    const gameTriggers = gsap.utils.toArray<HTMLElement>("[data-game]").map((element) =>
+    const locationTriggers = gsap.utils.toArray<HTMLElement>("[data-game],[data-location]").map((element) =>
       ScrollTrigger.create({
         trigger: element,
         start: "top center",
         end: "bottom center",
-        onEnter: () => updateShareableLocation(element.dataset.game),
-        onEnterBack: () => updateShareableLocation(element.dataset.game),
+        onEnter: () => updateShareableLocation(element.dataset.location ?? element.dataset.game),
+        onEnterBack: () => updateShareableLocation(element.dataset.location ?? element.dataset.game),
       }),
     );
     const storyAnimations = reducedMotion
@@ -110,7 +110,7 @@ export function HistoryExperience({ initialTarget }: { initialTarget?: string })
     });
     return () => {
       triggers.forEach((trigger) => trigger.kill());
-      gameTriggers.forEach((trigger) => trigger.kill());
+      locationTriggers.forEach((trigger) => trigger.kill());
       storyAnimations.forEach((animation) => animation.kill());
       memoryAnimations.forEach((animation) => animation.kill());
       progress.kill();

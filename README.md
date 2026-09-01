@@ -11,6 +11,9 @@
 - A scroll-driven Three.js sequence transforms the camera from overhead to street level.
 - Era memory displays recreate the mood of a late-1990s CRT map and an early-2000s 3D night drive.
 - A privacy-enhanced trailer theatre lazily opens five verified Rockstar Games YouTube releases.
+- “The Biggest Score” turns sourced commercial milestones into an interactive bank-vault record without presenting estimates as fact.
+- “Copies on the Street” grows an original night city from six million copies to the latest reported franchise milestone.
+- An optional GTA-inspired side mission links to a single Buy Me a Coffee page; no cryptocurrency or wallet solicitation is included.
 - GSAP reveals, parallax atmosphere, hover depth, HUD motion, and a global route indicator respond to scrolling.
 - The responsive layout includes reduced-motion behavior and semantic HTML content outside the canvas.
 
@@ -29,6 +32,8 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+To activate the support mission destination, copy `.env.example` to `.env.local` and replace the sample URL with your public Buy Me a Coffee page. Without it, the briefing remains visible but clearly says that its destination has not been configured.
+
 ## Verification
 
 ```bash
@@ -40,4 +45,4 @@ pnpm build
 
 ## Deploy
 
-Import the GitHub repository into Vercel. The framework and build settings are detected automatically; no environment variables are required.
+Import the GitHub repository into Vercel. The framework and build settings are detected automatically. Add `NEXT_PUBLIC_SUPPORT_URL` only when the real Buy Me a Coffee profile is ready.
